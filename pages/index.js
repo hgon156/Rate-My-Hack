@@ -19,10 +19,19 @@ export default function HomePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, tagline, description })
       });
-      const data = await res.json();
+      const text = await res.text();
+      let data;
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch (_) {
+        data = { error: res.ok ? "Invalid response from server." : `Server error (${res.status}). Try again.` };
+      }
+      if (!res.ok && !data.error) {
+        data.error = data.message || `Server error (${res.status}). Try again.`;
+      }
       setResult(data);
     } catch (err) {
-      setResult({ error: "Request failed. Try again." });
+      setResult({ error: "Request failed. Check your connection and try again." });
     } finally {
       setLoading(false);
     }
