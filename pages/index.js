@@ -40,7 +40,6 @@ export default function HomePage() {
     <>
       <Head>
         <title>Rate-My-Hack – ratemyhack.online | Hackathon Project Predictor</title>
-
       </Head>
       <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 flex items-center justify-center p-4">
         <div className="max-w-xl w-full bg-slate-800 border border-slate-600 p-6 rounded-xl shadow-2xl">
